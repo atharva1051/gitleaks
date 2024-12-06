@@ -1,6 +1,7 @@
 package report
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"testing"
@@ -89,6 +90,9 @@ func TestWriteJSON(t *testing.T) {
 			}
 			want, err := os.ReadFile(test.expected)
 			require.NoError(t, err)
+			fmt.Println(string(got) == string(want))
+			fmt.Println(string(got))
+			fmt.Println(string(want))
 			assert.Equal(t, want, got)
 		})
 	}
