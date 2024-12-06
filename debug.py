@@ -1,47 +1,11 @@
-a = [
- {
-  "Description": "",
-  "StartLine": 1,
-  "EndLine": 2,
-  "StartColumn": 1,
-  "EndColumn": 2,
-  "Match": "line containing \"quoted\" secret",
-  "Secret": "a \"quoted\" secret",
-  "File": "auth.py",
-  "SymlinkFile": "",
-  "Commit": "0000000000000000",
-  "Entropy": 0,
-  "Author": "John Doe",
-  "Email": "johndoe@gmail.com",
-  "Date": "10-19-2003",
-  "Message": "oops with \"quotes\"",
-  "Tags": [],
-  "RuleID": "test-rule",
-  "Fingerprint": ""
- }
-]
+import json
 
-b = [
- {
-  "Description": "",
-  "StartLine": 1,
-  "EndLine": 2,
-  "StartColumn": 1,
-  "EndColumn": 2,
-  "Match": "line containing \"quoted\" secret",
-  "Secret": "a \"quoted\" secret",
-  "File": "auth.py",
-  "SymlinkFile": "",
-  "Commit": "0000000000000000",
-  "Entropy": 0,
-  "Author": "John Doe",
-  "Email": "johndoe@gmail.com",
-  "Date": "10-19-2003",
-  "Message": "oops with \"quotes\"",
-  "Tags": [],
-  "RuleID": "test-rule",
-  "Fingerprint": ""
- }
-]
+def read_json_file(file):
+    with open(file) as f:
+        data = json.load(f)
+    return data
 
-print(a == b)
+expected = read_json_file(r'C:\Users\athar\gitleaks\testdata\expected\report\json_with_quotes.json')
+actual = read_json_file(r'C:\Users\athar\gitleaks\testdata\expected\test_results\with_quotes.json')
+
+print(expected == actual)
