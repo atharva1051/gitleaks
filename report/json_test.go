@@ -47,6 +47,31 @@ func TestWriteJSON(t *testing.T) {
 			testReportName: "empty",
 			expected:       filepath.Join(expectPath, "report", "empty.json"),
 			findings:       []Finding{}},
+		{
+			testReportName: "with_quotes",
+			expected:       filepath.Join(expectPath, "report", "json_with_quotes.json"),
+			findings: []Finding{
+				{
+					Description: "",
+					RuleID:      "test-rule",
+					Match:       `line containing "quoted" secret`,
+					Line:        "whole line containing secret",
+					Secret:      `a "quoted" secret`,
+					StartLine:   1,
+					EndLine:     2,
+					StartColumn: 1,
+					EndColumn:   2,
+					Message:     `oops with "quotes"`,
+					File:        "auth.py",
+					SymlinkFile: "",
+					Commit:      "0000000000000000",
+					Author:      "John Doe",
+					Email:       "johndoe@gmail.com",
+					Date:        "10-19-2003",
+					Tags:        []string{},
+				},
+			},
+		},
 	}
 
 	for _, test := range tests {
